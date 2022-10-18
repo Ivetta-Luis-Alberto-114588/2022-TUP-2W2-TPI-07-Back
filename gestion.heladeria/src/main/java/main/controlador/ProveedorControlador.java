@@ -19,7 +19,7 @@ public class ProveedorControlador {
 
 
     //LISTAR PROVEEDORES
-    @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
+    @CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/proveedores")
     public List<Proveedor> listarProveedores()
     {
@@ -28,7 +28,7 @@ public class ProveedorControlador {
 
 
     //BUSCAR PROVEEDOR POR ID
-    @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
+   // @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/proveedores/{id}")
     public ResponseEntity<Proveedor> obtenerProveedor(@PathVariable Integer id)
     {
@@ -42,7 +42,8 @@ public class ProveedorControlador {
     }
 
     //ALTA PROVEEDOR
-    @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
+    //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
+    //@CrossOrigin(origins="http://localhost:4200")
     @PostMapping("/proveedores")
     public void registrarProveedor(@RequestBody Proveedor proveedor)
     {
@@ -50,7 +51,7 @@ public class ProveedorControlador {
     }
 
     //ACTUALIZAR PROVEEDOR
-    @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
+    //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @PutMapping("proveedor/{id}")
     public ResponseEntity<?> actualizarProveedor(@RequestBody Proveedor proveedor, @PathVariable Integer id)
     {
@@ -75,7 +76,7 @@ public class ProveedorControlador {
     }
 
     //ELIMINAR PROVEEDOR
-    @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
+   // @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @DeleteMapping("/proveedores/{id}")
     public void eliminarProveedor(@PathVariable Integer id)
     {
