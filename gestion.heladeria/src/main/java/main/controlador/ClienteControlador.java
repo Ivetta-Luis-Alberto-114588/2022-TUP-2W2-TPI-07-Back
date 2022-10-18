@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-// prueba
-
 public class ClienteControlador {
 
     @Autowired
