@@ -19,7 +19,7 @@ public class ProveedorControlador {
 
     //LISTAR PROVEEDORES
     @CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
-    @GetMapping("/proveedores")
+    @GetMapping("/proveedores/listado")
     public List<Proveedor> listarProveedores()
     {
         return servicio.listarProveedores();
@@ -28,7 +28,7 @@ public class ProveedorControlador {
 
     //BUSCAR PROVEEDOR POR ID
    // @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    @GetMapping("/proveedores/id/{id}")
+    @GetMapping("/proveedores/buscarId/{id}")
     public ResponseEntity<Proveedor> obtenerProveedor(@PathVariable Integer id)
     {
         try {
@@ -43,7 +43,7 @@ public class ProveedorControlador {
     //ALTA PROVEEDOR
     //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     //@CrossOrigin(origins="http://localhost:4200")
-    @PostMapping("/proveedores")
+    @PostMapping("/proveedores/alta")
     public void registrarProveedor(@RequestBody Proveedor proveedor)
     {
         servicio.guardarProveedor(proveedor);
@@ -51,7 +51,7 @@ public class ProveedorControlador {
 
     //ACTUALIZAR PROVEEDOR
     //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    @PutMapping("proveedor/{id}")
+    @PutMapping("proveedor/actualizar/{id}")
     public ResponseEntity<?> actualizarProveedor(@RequestBody Proveedor proveedor, @PathVariable Integer id)
     {
         try {
@@ -76,7 +76,7 @@ public class ProveedorControlador {
 
     //ELIMINAR PROVEEDOR
    // @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    @DeleteMapping("/proveedores/{id}")
+    @DeleteMapping("/proveedores/eliminar/{id}")
     public void eliminarProveedor(@PathVariable Integer id)
     {
         servicio.eliminarProveedor(id);
@@ -84,7 +84,7 @@ public class ProveedorControlador {
 
     //BUSCAR PROVEEDORES POR NOMBRE
     @CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
-    @GetMapping("/proveedores/nombre/{nombre}")
+    @GetMapping("/proveedores/buscarNombre/{nombre}")
     public ResponseEntity<Proveedor> obtenerPorNombre(@PathVariable String nombre)
     {
         try {

@@ -2,6 +2,7 @@ package main.servicio;
 
 import main.Repositorio.ClienteRepository;
 import main.modelos.Cliente;
+import main.modelos.Proveedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,10 @@ public class ClienteServicio {
     public void eliminarCliente(Integer id)
     {
         repositorio.deleteById(id);
+    }
+
+    public Cliente ObtenerPorNombre(String nombre)
+    {
+        return repositorio.findByName(nombre);
     }
 }

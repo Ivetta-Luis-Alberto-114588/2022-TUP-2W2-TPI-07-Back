@@ -19,7 +19,7 @@ public class ClienteControlador {
 
     //Listar clientes
     @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    @GetMapping("/clientes")
+    @GetMapping("/clientes/listado")
     public List<Cliente> listarClientes()
     {
         return servicio.listarClientes();
@@ -27,7 +27,7 @@ public class ClienteControlador {
 
     //Buscar cliente por Id
     @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    @GetMapping("/clientes/{id}")
+    @GetMapping("/clientes/buscarId{id}")
     public ResponseEntity<Cliente> obtenerCliente(@PathVariable Integer id)
     {
         try
@@ -42,7 +42,7 @@ public class ClienteControlador {
 
     //Alta cliente
     @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    @PostMapping("/clientes")
+    @PostMapping("/clientes/alta")
     public void registrarCliente(@RequestBody Cliente cliente)
     {
         servicio.guardarCliente(cliente);
@@ -50,7 +50,7 @@ public class ClienteControlador {
 
     //Actualizar cliente
     @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    @PutMapping("/cliente/{id}")
+    @PutMapping("/cliente/actualizar/{id}")
     public ResponseEntity<?> actualizarCliente(@RequestBody Cliente cliente, @PathVariable Integer id)
     {
         try {
@@ -72,9 +72,23 @@ public class ClienteControlador {
 
     //Eliminar cliente
     @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    @DeleteMapping("/clientes/{id}")
+    @DeleteMapping("/clientes/eliminar/{id}")
     public void eliminarCliente(@PathVariable Integer id)
     {
         servicio.eliminarCliente(id);
+    }
+
+    //BUSCAR CLIENTE POR NOMBRE
+    @CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
+    @GetMapping("/clientes/buscarNombre/{nombre}")
+    public ResponseEntity<Cliente> obtenerPorNombre(@PathVariable String nombre)
+    {
+        try {
+            Cliente cliente = servicio.ObtenerPorNombre(nombre);
+            return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+        }catch (Exception e)
+        {
+            return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
+        }
     }
 }
