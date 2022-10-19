@@ -15,7 +15,6 @@ public class ProveedorControlador {
 
     @Autowired
     private ProveedorServicio servicio;
-    private ProveedorRepository repositorio;
 
 
     //LISTAR PROVEEDORES
@@ -29,7 +28,7 @@ public class ProveedorControlador {
 
     //BUSCAR PROVEEDOR POR ID
    // @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    @GetMapping("/proveedores/{id}")
+    @GetMapping("/proveedores/id/{id}")
     public ResponseEntity<Proveedor> obtenerProveedor(@PathVariable Integer id)
     {
         try {
@@ -83,6 +82,18 @@ public class ProveedorControlador {
         servicio.eliminarProveedor(id);
     }
 
-
+    //BUSCAR PROVEEDORES POR NOMBRE
+    @CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
+    @GetMapping("/proveedores/nombre/{nombre}")
+    public ResponseEntity<Proveedor> obtenerPorNombre(@PathVariable String nombre)
+    {
+        try {
+            Proveedor proveedor = servicio.ObtenerPorNombre(nombre);
+            return new ResponseEntity<Proveedor>(proveedor, HttpStatus.OK);
+        }catch (Exception e)
+        {
+            return new ResponseEntity<Proveedor>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package main.modelos;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,14 +10,23 @@ import javax.persistence.Table;
 public class Proveedor {
 
     @Id
+    @Column(nullable = false)
     private int cuil;
+    @Column(nullable = false)
     private String nombre;
+    @Column(nullable = false)
     private int telefono;
+    @Column(nullable = false)
     private String pais;
+    @Column(nullable = false)
     private String direccion;
+    @Column(nullable = false)
     private int codigo_postal;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private double latitud;
+    @Column(nullable = false)
     private double longitud;
 
     public Proveedor() {

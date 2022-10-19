@@ -32,4 +32,10 @@ public class ProveedorServicio {
     {
         repositorio.deleteById(id);
     }
+
+    public Proveedor ObtenerPorNombre(String nombre)
+    {
+        return repositorio.findByName(nombre);
+    }
+
 }
