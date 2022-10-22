@@ -1,39 +1,39 @@
 package main.servicio;
 
-import main.Repositorio.ClienteRepository;
-import main.modelos.Cliente;
+import main.Repositorio.OfertaRepository;
+import main.modelos.Oferta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ClienteServicio {
+public class OfertaServicio {
 
     @Autowired
-    private ClienteRepository repositorio;
+    private OfertaRepository repositorio;
 
-    public List<Cliente> listarClientes()
+    public List<Oferta> listarOfertas()
     {
         return repositorio.findAll();
     }
 
-    public void guardarCliente(Cliente cliente)
+    public void guardarOferta(Oferta oferta)
     {
-        repositorio.save(cliente);
+        repositorio.save(oferta);
     }
 
-    public Cliente obtenerClientePorId(Integer id)
+    public Oferta obtenerOfertaPorId(Integer id)
     {
         return repositorio.findById(id).get();
     }
 
-    public void eliminarCliente(Integer id)
+    public void eliminarOferta(Integer id)
     {
         repositorio.deleteById(id);
     }
 
-    public Cliente ObtenerPorNombre(String nombre)
+    public Oferta ObtenerPorNombre(String nombre)
     {
         return repositorio.findByName(nombre);
     }

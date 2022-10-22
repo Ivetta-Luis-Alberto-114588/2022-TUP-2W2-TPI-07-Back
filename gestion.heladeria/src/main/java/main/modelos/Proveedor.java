@@ -15,7 +15,7 @@ public class Proveedor {
     @Column(nullable = false)
     private String nombre;
     @Column(nullable = false)
-    private int telefono;
+    private long telefono;
     @Column(nullable = false)
     private String pais;
     @Column(nullable = false)
@@ -32,7 +32,7 @@ public class Proveedor {
     public Proveedor() {
     }
 
-    public Proveedor(int cuil, String nombre, int telefono, String pais, String direccion, int codigo_postal, String email, double latitud, double longitud) {
+    public Proveedor(int cuil, String nombre, long telefono, String pais, String direccion, int codigo_postal, String email, double latitud, double longitud) {
         this.cuil = cuil;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -60,11 +60,11 @@ public class Proveedor {
         this.nombre = nombre;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 

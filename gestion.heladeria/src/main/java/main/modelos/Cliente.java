@@ -1,5 +1,6 @@
 package main.modelos;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,16 +10,21 @@ import javax.persistence.Table;
 public class Cliente {
 
     @Id
+    @Column(nullable = false)
     private int dni;
+    @Column(nullable = false)
     private String nombre;
-    private int telefono;
+    @Column(nullable = false)
+    private long telefono;
+    @Column(nullable = false)
     private String direccion;
+    @Column(nullable = false)
     private String email;
 
     public Cliente() {
     }
 
-    public Cliente(int dni, String nombre, int telefono, String direccion, String email) {
+    public Cliente(int dni, String nombre, long telefono, String direccion, String email) {
         this.dni = dni;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -42,11 +48,11 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 

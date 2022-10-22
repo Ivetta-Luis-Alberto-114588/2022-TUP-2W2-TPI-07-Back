@@ -1,6 +1,5 @@
 package main.controlador;
 
-import main.Repositorio.ProveedorRepository;
 import main.modelos.Proveedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +17,12 @@ public class ProveedorControlador {
 
 
     //LISTAR PROVEEDORES
-    @CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
+    //@CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/proveedores/listado")
-    public List<Proveedor> listarProveedores()
+    public ResponseEntity<List<Proveedor>>listarProveedores()
     {
-        return servicio.listarProveedores();
+        //return servicio.listarProveedores();
+        return ResponseEntity.ok(servicio.listarProveedores());
     }
 
 
@@ -58,7 +58,7 @@ public class ProveedorControlador {
             Proveedor proveedorExistente = servicio.obtenerProveedorPorId(id);
 
             proveedorExistente.setNombre(proveedor.getNombre());
-            proveedorExistente.setTelefono(proveedor.getTelefono());
+            proveedor.setTelefono(proveedorExistente.getTelefono());
             proveedorExistente.setPais(proveedor.getPais());
             proveedorExistente.setDireccion(proveedor.getDireccion());
             proveedorExistente.setCodigo_postal(proveedor.getCodigo_postal());
@@ -83,7 +83,7 @@ public class ProveedorControlador {
     }
 
     //BUSCAR PROVEEDORES POR NOMBRE
-    @CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
+    //@CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/proveedores/buscarNombre/{nombre}")
     public ResponseEntity<Proveedor> obtenerPorNombre(@PathVariable String nombre)
     {
