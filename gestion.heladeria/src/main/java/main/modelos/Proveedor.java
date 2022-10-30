@@ -13,6 +13,8 @@ public class Proveedor {
     @Column(nullable = false)
     private int cuil;
     @Column(nullable = false)
+    private long cuit;
+    @Column(nullable = false)
     private String nombre;
     @Column(nullable = false)
     private long telefono;
@@ -32,8 +34,9 @@ public class Proveedor {
     public Proveedor() {
     }
 
-    public Proveedor(int cuil, String nombre, long telefono, String pais, String direccion, int codigo_postal, String email, double latitud, double longitud) {
+    public Proveedor(int cuil, long cuit, String nombre, long telefono, String pais, String direccion, int codigo_postal, String email, double latitud, double longitud) {
         this.cuil = cuil;
+        this.cuit = cuit;
         this.nombre = nombre;
         this.telefono = telefono;
         this.pais = pais;
@@ -50,6 +53,14 @@ public class Proveedor {
 
     public void setCuil(int cuil) {
         this.cuil = cuil;
+    }
+
+    public long getCuit() {
+        return cuit;
+    }
+
+    public void setCuit(long cuit) {
+        this.cuit = cuit;
     }
 
     public String getNombre() {

@@ -61,6 +61,7 @@ public class ClienteControlador {
             clienteExistente.setTelefono(cliente.getTelefono());
             clienteExistente.setDireccion(cliente.getDireccion());
             clienteExistente.setEmail(cliente.getEmail());
+            clienteExistente.setCantidad_puntos(cliente.getCantidad_puntos());
 
             servicio.guardarCliente(clienteExistente);
             return  new ResponseEntity<Cliente>(HttpStatus.OK);

@@ -20,16 +20,19 @@ public class Cliente {
     private String direccion;
     @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
+    private int cantidad_puntos;
 
     public Cliente() {
     }
 
-    public Cliente(int dni, String nombre, long telefono, String direccion, String email) {
+    public Cliente(int dni, String nombre, long telefono, String direccion, String email, int cantidad_puntos) {
         this.dni = dni;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
         this.email = email;
+        this.cantidad_puntos = cantidad_puntos;
     }
 
     public int getDni() {
@@ -70,5 +73,13 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getCantidad_puntos() {
+        return cantidad_puntos;
+    }
+
+    public void setCantidad_puntos(int cantidad_puntos) {
+        this.cantidad_puntos = cantidad_puntos;
     }
 }

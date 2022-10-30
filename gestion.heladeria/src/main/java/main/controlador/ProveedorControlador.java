@@ -57,8 +57,9 @@ public class ProveedorControlador {
         try {
             Proveedor proveedorExistente = servicio.obtenerProveedorPorId(id);
 
+            proveedorExistente.setCuit(proveedor.getCuit());
             proveedorExistente.setNombre(proveedor.getNombre());
-            proveedor.setTelefono(proveedorExistente.getTelefono());
+            proveedorExistente.setTelefono(proveedor.getTelefono());
             proveedorExistente.setPais(proveedor.getPais());
             proveedorExistente.setDireccion(proveedor.getDireccion());
             proveedorExistente.setCodigo_postal(proveedor.getCodigo_postal());
