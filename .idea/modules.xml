@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Back End.iml" filepath="$PROJECT_DIR$/.idea/Back End.iml" />
       <module fileurl="file://$PROJECT_DIR$/gestion.heladeria/gestion.heladeria.iml" filepath="$PROJECT_DIR$/gestion.heladeria/gestion.heladeria.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gestion.heladeria/tp3.iml" filepath="$PROJECT_DIR$/gestion.heladeria/tp3.iml" />
     </modules>
   </component>
 </project>
