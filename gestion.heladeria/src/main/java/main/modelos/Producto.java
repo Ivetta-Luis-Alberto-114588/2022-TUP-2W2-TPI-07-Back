@@ -1,30 +1,34 @@
 package main.modelos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "producto")
-public class Producto {
+public class Producto implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private int codigo;
+    private Integer codigo;
     @Column(nullable = false)
     private String descripcion;
-    @Column(nullable = false)
-    private int id_tipo;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tipo")
+    private TipoProducto tipoProducto;
 
     public Producto() {
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -36,11 +40,13 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public int getId_producto() {
-        return id_tipo;
+    public TipoProducto getTipoProducto() {
+        return tipoProducto;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_tipo = id_producto;
+    public void setTipoProducto(TipoProducto tipoProducto) {
+        this.tipoProducto = tipoProducto;
     }
+
+    private static final long serialVersionUID = 1L;
 }
