@@ -2,7 +2,9 @@ package main.auth.service;
 
 import main.auth.dto.AuthenticationRequest;
 import main.auth.dto.UserDTO;
+import main.auth.entity.RolEntity;
 import main.auth.entity.UserEntity;
+import main.auth.repository.RolRepository;
 import main.auth.repository.UserRepository;
 import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class UserDetailsCustomService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private RolRepository rolRepository;
+    @Autowired
     private JwtUtils jwtUtils;
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -40,9 +44,13 @@ public class UserDetailsCustomService implements UserDetailsService {
 
     public boolean save(UserDTO userDTO) {
         UserEntity userEntity = new UserEntity();
+        RolEntity rolEntity = new RolEntity();
         userEntity.setUsername(userDTO.getUsername());
         userEntity.setPassword(userDTO.getPassword());
+        rolEntity = rolRepository.findById(userDTO.getId_rol());
+        userEntity.setRolEntity(rolEntity);
         userEntity = this.userRepository.save(userEntity);
+
         if (userEntity != null) {
         }
         return userEntity != null;

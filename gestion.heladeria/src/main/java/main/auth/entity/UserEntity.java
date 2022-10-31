@@ -1,21 +1,21 @@
 package main.auth.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -24,13 +24,13 @@ public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int legajo;
     private String username;
     @Size(min = 3)
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_rol",referencedColumnName = "id")
-    private RolEntity rol;
+    private RolEntity rolEntity;
 
     @Transient
     private boolean accountNonExpired;
@@ -48,12 +48,12 @@ public class UserEntity implements UserDetails {
         this.enabled = true;
     }
 
-    public Long getId() {
-        return id;
+    public int getLegajo() {
+        return legajo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setLegajo(int legajo) {
+        this.legajo = legajo;
     }
 
     @Override
@@ -99,5 +99,11 @@ public class UserEntity implements UserDetails {
         return enabled;
     }
 
+    public RolEntity getRolEntity() {
+        return rolEntity;
+    }
 
+    public void setRolEntity(RolEntity rolEntity) {
+        this.rolEntity = rolEntity;
+    }
 }

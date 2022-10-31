@@ -10,4 +10,5 @@ public class UserDTO {
     @Size(min = 3)
     @NotNull
     private String password;
+    private int id_rol;
 }
