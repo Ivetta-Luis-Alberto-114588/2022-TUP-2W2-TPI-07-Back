@@ -22,8 +22,23 @@ public class Factura implements Serializable {
     private Cliente cliente;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+<<<<<<< HEAD
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "factura")
     //@JoinColumn(name = "id_factura")
+=======
+<<<<<<< HEAD
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "factura")
+    //@JoinColumn(name = "id_factura")
+=======
+<<<<<<< HEAD
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "factura")
+    //@JoinColumn(name = "id_factura")
+=======
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_detalle")
+>>>>>>> cad2137c5db568840f96129bccfffa433623ea5a
+>>>>>>> 1a8b96a3032eb0bf5cfe09ba20032d914218df6a
+>>>>>>> 2d782d3b3a861271819d2a756c5f6f0c974133f4
     private List<DetalleFactura> items;
 
     @Column(nullable = false)
@@ -33,7 +48,19 @@ public class Factura implements Serializable {
     private double monto_total;
 
     public Factura() {
+<<<<<<< HEAD
         
+=======
+<<<<<<< HEAD
+        
+=======
+<<<<<<< HEAD
+        
+=======
+        items = new ArrayList<>();
+>>>>>>> cad2137c5db568840f96129bccfffa433623ea5a
+>>>>>>> 1a8b96a3032eb0bf5cfe09ba20032d914218df6a
+>>>>>>> 2d782d3b3a861271819d2a756c5f6f0c974133f4
     }
 
     public int getId() {
