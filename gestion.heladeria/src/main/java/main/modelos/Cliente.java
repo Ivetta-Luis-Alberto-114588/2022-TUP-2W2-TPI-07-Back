@@ -1,9 +1,10 @@
 package main.modelos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -23,17 +24,14 @@ public class Cliente {
     @Column(nullable = false)
     private int cantidad_puntos;
 
+    @JsonIgnoreProperties({"cliente", "hibernateLazyInitializer", "handler"})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente" , cascade = CascadeType.ALL)
+    private List<Factura> facturas;
+
     public Cliente() {
+        this.facturas = new ArrayList<>();
     }
 
-    public Cliente(int dni, String nombre, long telefono, String direccion, String email, int cantidad_puntos) {
-        this.dni = dni;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.email = email;
-        this.cantidad_puntos = cantidad_puntos;
-    }
 
     public int getDni() {
         return dni;
@@ -81,5 +79,13 @@ public class Cliente {
 
     public void setCantidad_puntos(int cantidad_puntos) {
         this.cantidad_puntos = cantidad_puntos;
+    }
+
+    public List<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        this.facturas = facturas;
     }
 }

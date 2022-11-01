@@ -1,7 +1,6 @@
 package main.controlador;
 
 import main.modelos.Cliente;
-import main.modelos.Proveedor;
 import main.servicio.ClienteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,6 @@ public class ClienteControlador {
     private ClienteServicio servicio;
 
     //Listar clientes
-    //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/clientes/listado")
     public List<Cliente> listarClientes()
     {
