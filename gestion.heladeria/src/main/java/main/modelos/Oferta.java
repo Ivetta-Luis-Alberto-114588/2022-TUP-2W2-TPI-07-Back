@@ -9,6 +9,7 @@ public class Oferta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToMany()
     private int id;
     @Column(nullable = false)
     private int codigo_producto;
