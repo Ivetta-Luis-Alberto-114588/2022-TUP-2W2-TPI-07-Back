@@ -1,0 +1,5 @@
+controlador\ProveedorControlador.class
+Repositorio\ProveedorRepository.class
+servicio\ProveedorServicio.class
+Application.class
+modelos\Proveedor.class

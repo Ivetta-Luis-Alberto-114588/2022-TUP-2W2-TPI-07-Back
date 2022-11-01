@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: gestion.heladeria.ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.136 s <<< FAILURE! - in gestion.heladeria.ApplicationTests
+gestion.heladeria.ApplicationTests  Time elapsed: 0.135 s  <<< ERROR!
+java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
+
