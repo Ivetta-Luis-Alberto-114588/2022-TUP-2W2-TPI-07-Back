@@ -29,6 +29,10 @@ public class DetalleFactura implements Serializable {
     @JoinColumn(name = "id_oferta")
     private Oferta oferta;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1a8b96a3032eb0bf5cfe09ba20032d914218df6a
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_fatura")
     private Factura factura;
@@ -37,12 +41,28 @@ public class DetalleFactura implements Serializable {
     }
 
     public DetalleFactura(int id, Producto producto, double precio_unitario, int cantidad, Oferta oferta, Factura factura) {
+<<<<<<< HEAD
+=======
+=======
+    public DetalleFactura() {
+    }
+
+    public DetalleFactura(int id, Producto producto, double precio_unitario, int cantidad, Oferta oferta) {
+>>>>>>> cad2137c5db568840f96129bccfffa433623ea5a
+>>>>>>> 1a8b96a3032eb0bf5cfe09ba20032d914218df6a
         this.id = id;
         this.producto = producto;
         this.precio_unitario = precio_unitario;
         this.cantidad = cantidad;
         this.oferta = oferta;
+<<<<<<< HEAD
         this.factura = factura;
+=======
+<<<<<<< HEAD
+        this.factura = factura;
+=======
+>>>>>>> cad2137c5db568840f96129bccfffa433623ea5a
+>>>>>>> 1a8b96a3032eb0bf5cfe09ba20032d914218df6a
     }
 
     public int getId() {
@@ -85,6 +105,10 @@ public class DetalleFactura implements Serializable {
         this.oferta = oferta;
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1a8b96a3032eb0bf5cfe09ba20032d914218df6a
     public Factura getFactura() {
         return factura;
     }
@@ -93,5 +117,10 @@ public class DetalleFactura implements Serializable {
         this.factura = factura;
     }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> cad2137c5db568840f96129bccfffa433623ea5a
+>>>>>>> 1a8b96a3032eb0bf5cfe09ba20032d914218df6a
     private static final long serialVersionUID = 1L;
 }
