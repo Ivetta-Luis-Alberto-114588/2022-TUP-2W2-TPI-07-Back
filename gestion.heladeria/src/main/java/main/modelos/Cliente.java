@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "clientes")
 public class Cliente {
 
     @Id
     @Column(nullable = false)
+    private int id;
+    @Column(nullable = false)
     private int dni;
     @Column(nullable = false)
-    private String nombre;
+    private String nombre_apellido;
     @Column(nullable = false)
     private long telefono;
     @Column(nullable = false)
@@ -22,7 +24,7 @@ public class Cliente {
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
-    private int cantidad_puntos;
+    private boolean eliminado;
 
     @JsonIgnoreProperties({"cliente", "hibernateLazyInitializer", "handler"})
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente" , cascade = CascadeType.ALL)
@@ -32,6 +34,21 @@ public class Cliente {
         this.facturas = new ArrayList<>();
     }
 
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getDni() {
         return dni;
@@ -41,12 +58,12 @@ public class Cliente {
         this.dni = dni;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombre_apellido() {
+        return nombre_apellido;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre_apellido(String nombre_apellido) {
+        this.nombre_apellido = nombre_apellido;
     }
 
     public long getTelefono() {
@@ -71,14 +88,6 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getCantidad_puntos() {
-        return cantidad_puntos;
-    }
-
-    public void setCantidad_puntos(int cantidad_puntos) {
-        this.cantidad_puntos = cantidad_puntos;
     }
 
     public List<Factura> getFacturas() {

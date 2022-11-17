@@ -23,18 +23,27 @@ public class ProductoServicio {
         repositorio.save(producto);
     }
 
-    public Producto obtenerProductoPorId(int id)
+    public Producto obtenerProductoPorId(Integer id)
     {
         return repositorio.findById(id).get();
     }
 
     public void eliminarProducto(int id)
     {
-        repositorio.deleteById(id);
+        repositorio.updateEliminar(id);
     }
 
     public Producto obtenerPorNombre(String nombre)
     {
         return repositorio.findByName(nombre);
+    }
+
+    public List<Producto> obtenerTodosPorNombre(String nombre)
+    {
+        if(nombre != null)
+        {
+            return repositorio.findAll(nombre);
+        }
+        return repositorio.findAll();
     }
 }

@@ -8,22 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "factura")
+@Table(name = "facturas")
 public class Factura implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(nullable = false)
     private int id;
 
     @JsonIgnoreProperties({"facturas", "hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dni")
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "factura")
-    //@JoinColumn(name = "id_factura")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_factura")
     private List<DetalleFactura> items;
 
     @Column(nullable = false)
@@ -32,8 +32,20 @@ public class Factura implements Serializable {
     @Column(nullable = false)
     private double monto_total;
 
+
+
     public Factura() {
-        
+        items = new ArrayList<>();
+    }
+
+    public Double getTotal()
+    {
+        Double total = 0.00;
+        for(DetalleFactura items : items)
+        {
+            total += items.getImporte();
+        }
+        return total;
     }
 
     public int getId() {

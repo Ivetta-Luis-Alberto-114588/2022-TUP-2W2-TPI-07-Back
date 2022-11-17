@@ -6,43 +6,37 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "detalle_factura")
+@Table(name = "detalles_facturas")
 public class DetalleFactura implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(nullable = false)
     private int id;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "codigo_producto")
+    @JoinColumn(name = "id_producto")
     private Producto producto;
-
-    @Column(nullable = false)
-    private double precio_unitario;
 
     @Column(nullable = false)
     private int cantidad;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_oferta")
-    private Oferta oferta;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_fatura")
-    private Factura factura;
+    @JoinColumn(name="id_factura")
+    private int id_factura;
 
     public DetalleFactura() {
     }
 
-    public DetalleFactura(int id, Producto producto, double precio_unitario, int cantidad, Oferta oferta, Factura factura) {
+    public DetalleFactura(int id, Producto producto, int cantidad) {
         this.id = id;
         this.producto = producto;
-        this.precio_unitario = precio_unitario;
         this.cantidad = cantidad;
-        this.oferta = oferta;
-        this.factura = factura;
+    }
+
+    public Double getImporte()
+    {
+        return cantidad * producto.getPrecio_unitario_venta();
     }
 
     public int getId() {
@@ -61,14 +55,6 @@ public class DetalleFactura implements Serializable {
         this.producto = producto;
     }
 
-    public double getPrecio_unitario() {
-        return precio_unitario;
-    }
-
-    public void setPrecio_unitario(double precio_unitario) {
-        this.precio_unitario = precio_unitario;
-    }
-
     public int getCantidad() {
         return cantidad;
     }
@@ -77,20 +63,12 @@ public class DetalleFactura implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Oferta getOferta() {
-        return oferta;
+    public int getId_factura() {
+        return this.id_factura;
     }
 
-    public void setOferta(Oferta oferta) {
-        this.oferta = oferta;
-    }
-
-    public Factura getFactura() {
-        return factura;
-    }
-
-    public void setFactura(Factura factura) {
-        this.factura = factura;
+    public void setId_factura(int id_factura) {
+        this.id_factura = id_factura;
     }
 
     private static final long serialVersionUID = 1L;

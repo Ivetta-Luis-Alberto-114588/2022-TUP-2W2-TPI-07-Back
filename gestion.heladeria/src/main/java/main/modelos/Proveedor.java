@@ -6,10 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "proveedor")
+@Table(name = "proveedores")
 public class Proveedor {
 
     @Id
+    @Column(nullable = false)
+    private int id;
     @Column(nullable = false)
     private long cuit;
     @Column(nullable = false)
@@ -17,31 +19,42 @@ public class Proveedor {
     @Column(nullable = false)
     private long telefono;
     @Column(nullable = false)
-    private String pais;
-    @Column(nullable = false)
     private String direccion;
     @Column(nullable = false)
     private int codigo_postal;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
-    private double latitud;
-    @Column(nullable = false)
-    private double longitud;
+    private boolean eliminado;
 
     public Proveedor() {
     }
 
-    public Proveedor(long cuit, String nombre, long telefono, String pais, String direccion, int codigo_postal, String email, double latitud, double longitud) {
+    public Proveedor(int id, long cuit, String nombre, long telefono, String direccion, int codigo_postal, String email, boolean eliminado) {
+        this.id = id;
         this.cuit = cuit;
         this.nombre = nombre;
         this.telefono = telefono;
-        this.pais = pais;
         this.direccion = direccion;
         this.codigo_postal = codigo_postal;
         this.email = email;
-        this.latitud = latitud;
-        this.longitud = longitud;
+        this.eliminado = eliminado;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public long getCuit() {
@@ -68,14 +81,6 @@ public class Proveedor {
         this.telefono = telefono;
     }
 
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
     public String getDireccion() {
         return direccion;
     }
@@ -98,21 +103,5 @@ public class Proveedor {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public double getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
-    }
-
-    public double getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
     }
 }

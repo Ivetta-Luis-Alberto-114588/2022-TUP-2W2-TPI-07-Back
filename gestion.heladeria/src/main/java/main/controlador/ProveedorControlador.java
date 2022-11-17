@@ -17,7 +17,6 @@ public class ProveedorControlador {
 
 
     //LISTAR PROVEEDORES
-    //@CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/proveedores/listado")
     public ResponseEntity<List<Proveedor>>listarProveedores()
     {
@@ -27,7 +26,6 @@ public class ProveedorControlador {
 
 
     //BUSCAR PROVEEDOR POR ID
-   // @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/proveedores/buscarId/{id}")
     public ResponseEntity<Proveedor> obtenerProveedor(@PathVariable Integer id)
     {
@@ -41,8 +39,6 @@ public class ProveedorControlador {
     }
 
     //ALTA PROVEEDOR
-    //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
-    //@CrossOrigin(origins="http://localhost:4200")
     @PostMapping("/proveedores/alta")
     public void registrarProveedor(@RequestBody Proveedor proveedor)
     {
@@ -50,7 +46,6 @@ public class ProveedorControlador {
     }
 
     //ACTUALIZAR PROVEEDOR
-    //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @PutMapping("proveedor/actualizar/{id}")
     public ResponseEntity<?> actualizarProveedor(@RequestBody Proveedor proveedor, @PathVariable Integer id)
     {
@@ -60,12 +55,10 @@ public class ProveedorControlador {
             proveedorExistente.setCuit(proveedor.getCuit());
             proveedorExistente.setNombre(proveedor.getNombre());
             proveedorExistente.setTelefono(proveedor.getTelefono());
-            proveedorExistente.setPais(proveedor.getPais());
             proveedorExistente.setDireccion(proveedor.getDireccion());
             proveedorExistente.setCodigo_postal(proveedor.getCodigo_postal());
             proveedorExistente.setEmail(proveedor.getEmail());
-            proveedorExistente.setLatitud(proveedor.getLatitud());
-            proveedorExistente.setLongitud(proveedor.getLongitud());
+            proveedorExistente.setEliminado(proveedor.isEliminado());
 
             servicio.guardarProveedor(proveedorExistente);
             return new ResponseEntity<Proveedor>(HttpStatus.OK);
@@ -76,7 +69,6 @@ public class ProveedorControlador {
     }
 
     //ELIMINAR PROVEEDOR
-   // @CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @DeleteMapping("/proveedores/eliminar/{id}")
     public void eliminarProveedor(@PathVariable Integer id)
     {
@@ -84,7 +76,6 @@ public class ProveedorControlador {
     }
 
     //BUSCAR PROVEEDORES POR NOMBRE
-    //@CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/proveedores/buscarNombre/{nombre}")
     public ResponseEntity<Proveedor> obtenerPorNombre(@PathVariable String nombre)
     {
@@ -97,4 +88,9 @@ public class ProveedorControlador {
         }
     }
 
+    @GetMapping("/proveedores/listarNombre/{nombre}")
+    public ResponseEntity<List<Proveedor>>ListarPorNombre(@PathVariable String nombre)
+    {
+        return ResponseEntity.ok(servicio.obtenerTodosPorNombre(nombre));
+    }
 }

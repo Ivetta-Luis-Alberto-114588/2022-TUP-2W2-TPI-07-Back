@@ -24,7 +24,6 @@ public class ClienteControlador {
     }
 
     //Buscar cliente por Id
-    //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/clientes/buscarId{id}")
     public ResponseEntity<Cliente> obtenerCliente(@PathVariable Integer id)
     {
@@ -39,7 +38,6 @@ public class ClienteControlador {
     }
 
     //Alta cliente
-    //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @PostMapping("/clientes/alta")
     public void registrarCliente(@RequestBody Cliente cliente)
     {
@@ -47,7 +45,6 @@ public class ClienteControlador {
     }
 
     //Actualizar cliente
-    //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @PutMapping("/cliente/actualizar/{id}")
     public ResponseEntity<?> actualizarCliente(@RequestBody Cliente cliente, @PathVariable Integer id)
     {
@@ -55,11 +52,11 @@ public class ClienteControlador {
             Cliente clienteExistente = servicio.obtenerClientePorId(id);
 
             clienteExistente.setDni(cliente.getDni());
-            clienteExistente.setNombre(cliente.getNombre());
+            clienteExistente.setNombre_apellido(cliente.getNombre_apellido());
             clienteExistente.setTelefono(cliente.getTelefono());
             clienteExistente.setDireccion(cliente.getDireccion());
             clienteExistente.setEmail(cliente.getEmail());
-            clienteExistente.setCantidad_puntos(cliente.getCantidad_puntos());
+            clienteExistente.setEliminado(cliente.isEliminado());
 
             servicio.guardarCliente(clienteExistente);
             return  new ResponseEntity<Cliente>(HttpStatus.OK);
@@ -70,7 +67,6 @@ public class ClienteControlador {
     }
 
     //Eliminar cliente
-    //@CrossOrigin(allowedHeaders = {"Authorization", "Origin"})
     @DeleteMapping("/clientes/eliminar/{id}")
     public void eliminarCliente(@PathVariable Integer id)
     {
@@ -78,7 +74,6 @@ public class ClienteControlador {
     }
 
     //BUSCAR CLIENTE POR NOMBRE
-    //@CrossOrigin( allowedHeaders = {"Authorization", "Origin"})
     @GetMapping("/clientes/buscarNombre/{nombre}")
     public ResponseEntity<Cliente> obtenerPorNombre(@PathVariable String nombre)
     {
@@ -89,5 +84,11 @@ public class ClienteControlador {
         {
             return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/clientes/listarNombre/{nombre}")
+    public ResponseEntity<List<Cliente>>ListarPorNombre(@PathVariable String nombre)
+    {
+        return ResponseEntity.ok(servicio.obtenerTodosPorNombre(nombre));
     }
 }
